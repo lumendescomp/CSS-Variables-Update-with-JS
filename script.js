@@ -1,21 +1,10 @@
-const panels = document.querySelectorAll('.panel')
-
-panels.forEach(panel => panel.addEventListener('click', toggleOpen));
-panels.forEach(panel => panel.addEventListener('transitionend', toggleOpenActive));
-
-function toggleOpen() {
-    this.classList.toggle('open')
-}
-
-function toggleOpenActive(e) {
-    if (e.propertyName.includes('flex'))
-        this.classList.toggle('open-active')
-}
+const inputs = document.querySelectorAll('.controls input')
 
 
-const secondP = document.querySelectorAll('p')
-secondP.forEach(p => p.addEventListener('click', toggleOP))
+inputs.forEach(input => input.addEventListener('change', handleUpdate))
+inputs.forEach(input => input.addEventListener('mousemove', handleUpdate))
 
-function toggleOP() {
-    this.classList.toggle('op')
+function handleUpdate() {
+    const suffix = this.dataset.sizing || ' ';
+    document.documentElement.style.setProperty(`--${this.name}`, this.value + suffix);
 }
